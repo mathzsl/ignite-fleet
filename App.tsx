@@ -3,6 +3,7 @@ import { StatusBar } from "react-native";
 import { ThemeProvider } from "styled-components/native";
 import theme from "./src/theme";
 
+import { RealmProvider } from "./src/libs/realm";
 import { AppProvider, UserProvider } from "@realm/react";
 
 import {
@@ -33,7 +34,7 @@ export default function App() {
   return (
     <AppProvider id={REALM_APP_ID}>
       <ThemeProvider theme={theme}>
-        <SafeAreaProvider>
+        <SafeAreaProvider style={{flex: 1, backgroundColor: theme.COLORS.GRAY_800}}>
           <StatusBar
             barStyle="light-content"
             backgroundColor="transparent"
@@ -41,7 +42,9 @@ export default function App() {
           />
 
           <UserProvider fallback={SignIn}>
-            <Routes />
+            <RealmProvider>
+              <Routes />
+            </RealmProvider>
           </UserProvider>
         </SafeAreaProvider>
       </ThemeProvider>
