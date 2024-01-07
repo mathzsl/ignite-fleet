@@ -7,6 +7,8 @@ import {
   VStack,
 } from "./styles";
 
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { Power } from "phosphor-react-native";
 
 import { useTheme } from "styled-components/native";
@@ -16,6 +18,9 @@ import { useUser, useApp } from "@realm/react";
 export function HomeHeader() {
   const user = useUser();
   const app = useApp();
+  const insets = useSafeAreaInsets();
+
+  const paddingTop = insets.top + 32;
 
   const { COLORS } = useTheme();
 
@@ -24,7 +29,7 @@ export function HomeHeader() {
   }
 
   return (
-    <Container>
+    <Container style={{ paddingTop }}>
       <Picture
         source={{
           uri: user.profile.pictureUrl,
