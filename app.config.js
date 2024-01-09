@@ -1,4 +1,8 @@
-{
+import * as dotEnv from 'dotenv'
+
+dotEnv.config()
+
+module.exports = {
   "expo": {
     "name": "ignite-fleet",
     "slug": "ignite-fleet",
@@ -11,9 +15,7 @@
       "resizeMode": "cover",
       "backgroundColor": "#202024"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -22,10 +24,23 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#202024"
       },
-      "package": "com.mathzsl.ignitefleet"
+      "package": "com.mathzsl.ignitefleet",
+      "config": {
+        "googleMaps": {
+          "apiKey": process.env.GOOGLE_MAPS_API_KEY,
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
+    ]
   }
 }
