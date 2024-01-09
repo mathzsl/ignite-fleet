@@ -2,7 +2,6 @@ import { Address, Container, Info, Label } from "./styles";
 
 import { IconBox, IconBoxProps } from "../IconBox";
 
-import { Car } from "phosphor-react-native";
 
 export type LocationInfoProps = {
   label: string;
